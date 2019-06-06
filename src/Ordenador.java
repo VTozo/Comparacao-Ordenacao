@@ -29,15 +29,22 @@ class Ordenador {
         return f;
     }
 
-    static void shellSort(int[] incrementos, int[] vetor) {
-        int incr, j, k, span, y;
-        for (incr = 0; incr < incrementos.length; incr++) {
-            span = incrementos[incr];
-            for (j = span; j < vetor.length; j++) {
-                y = vetor[j];
-                for (k = j - span; k >= 0 && y < vetor[k]; k -= span)
-                    vetor[k + span] = vetor[k];
-                vetor[k + span] = y;
+    static void shellSort(int[] array) {
+        int incremento = array.length / 2;
+        while (incremento > 0) {
+            for (int i = incremento; i < array.length; i++) {
+                int j = i;
+                int temp = array[i];
+                while (j >= incremento && array[j - incremento] > temp) {
+                    array[j] = array[j - incremento];
+                    j = j - incremento;
+                }
+                array[j] = temp;
+            }
+            if (incremento == 2) {
+                incremento = 1;
+            } else {
+                incremento *= (5.0 / 11);
             }
         }
     }

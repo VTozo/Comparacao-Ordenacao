@@ -6,11 +6,18 @@ public class ComparadorOrdenacao {
 
         int n = 10000;
 
-        int[] quaseOrdenado, aleatorio, decrescente;
+        int[] quaseOrdenado, aleatorio, decrescente, copia = new int[n];
 
         aleatorio = RandomizeArray(IntStream.rangeClosed(1, n).toArray());
 
-        Ordenador.heapSort(aleatorio);
+        System.arraycopy(aleatorio, 0, copia, 0, copia.length);
+        Ordenador.heapSort(copia);
+
+        System.arraycopy(aleatorio, 0, copia, 0, copia.length);
+        Ordenador.quickSort(copia, 0, copia.length - 1);
+
+        System.arraycopy(aleatorio, 0, copia, 0, copia.length);
+        Ordenador.shellSort(copia);
 
     }
 
@@ -26,4 +33,5 @@ public class ComparadorOrdenacao {
 
         return array;
     }
+
 }

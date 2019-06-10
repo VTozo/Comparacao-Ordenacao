@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Comparador-Ordenacao.iml" filepath="$PROJECT_DIR$/Comparador-Ordenacao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Comparacao-Ordenacao.iml" filepath="$PROJECT_DIR$/Comparacao-Ordenacao.iml" />
     </modules>
   </component>
 </project>

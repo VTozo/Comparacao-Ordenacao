@@ -153,9 +153,9 @@ class Ordenador {
             digitos++;
         }
         for (int i = 0; i < digitos; i++) {
-            List<List<Integer>> subarrays = new ArrayList<List<Integer>>();
+            List<List<Integer>> subarrays = new ArrayList<>();
             int potencia = (int) Math.pow(10, i);
-            for (int j = 0; j < 10; j++) subarrays.add(new ArrayList<Integer>());
+            for (int j = 0; j < 10; j++) subarrays.add(new ArrayList<>());
             for (int numero : array) subarrays.get(numero % potencia * 10/ potencia).add(numero);
             int j = 0;
             for (List<Integer> subarray : subarrays) {

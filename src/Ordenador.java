@@ -1,3 +1,6 @@
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
 class Ordenador {
 
     static void quickSort(int[] vetor, int inicio, int fim) {
@@ -115,6 +118,16 @@ class Ordenador {
 
             } while (index < i);
         }
+    }
+
+    static void radixSort(int[] array) {
+        int maior = array[0];
+        for (int numero : array) if (numero > maior) maior = numero;
+
+    }
+
+    static void aFazerSort6(int[] array) {
+        Arrays.sort(array);
     }
 
     private static void swap(int[] a, int i, int j) {

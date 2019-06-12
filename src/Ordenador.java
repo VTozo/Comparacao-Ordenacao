@@ -26,34 +26,33 @@ class Ordenador {
         }
     }
 
-    static private int separarQuicksort(int[] vetor,int p, int inicio, int fim) {
-            int l = inicio;
-            int h = fim - 2;
-            int piv = vetor[p];
-            troca(vetor, p, fim - 1);
-            while (l < h) {
-                if (vetor[l] < piv) {
-                    l++;
-                } else if (vetor[h] >= piv) {
-                    h--;
-                } else {
-                    swap(vetor, l, h);
-                }
+    static private int separarQuicksort(int[] vetor, int p, int inicio, int fim) {
+        int l = inicio;
+        int h = fim - 2;
+        int piv = vetor[p];
+        troca(vetor, p, fim - 1);
+        while (l < h) {
+            if (vetor[l] < piv) {
+                l++;
+            } else if (vetor[h] >= piv) {
+                h--;
+            } else {
+                swap(vetor, l, h);
             }
-            int idx = h;
-            if (vetor[h] < piv) {
-                idx++;
-            }
-            swap(vetor, fim - 1, idx);
-            return idx;
+        }
+        int idx = h;
+        if (vetor[h] < piv) {
+            idx++;
+        }
+        swap(vetor, fim - 1, idx);
+        return idx;
     }
 
     private static void troca(int[] arr, int i, int j) {
-            int temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
+        int temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
     }
-
 
 
     static void shellSort(int[] array) {
@@ -85,7 +84,8 @@ class Ordenador {
         int[] r = new int[n - mid];
 
         System.arraycopy(a, 0, l, 0, mid);
-        if (n - mid >= 0) System.arraycopy(a, mid, r, 0, n - mid);
+        if (n - mid >= 0)
+            System.arraycopy(a, mid, r, 0, n - mid);
 
         mergeSort(l, mid);
         mergeSort(r, n - mid);
@@ -146,7 +146,9 @@ class Ordenador {
 
     static void radixSort(int[] array) {
         int maior = array[0];
-        for (int numero : array) if (numero > maior) maior = numero;
+        for (int numero : array)
+            if (numero > maior)
+                maior = numero;
         int digitos = 1;
         while (maior / 10 > 0) {
             maior /= 10;
@@ -155,8 +157,10 @@ class Ordenador {
         for (int i = 0; i < digitos; i++) {
             List<List<Integer>> subarrays = new ArrayList<>();
             int potencia = (int) Math.pow(10, i);
-            for (int j = 0; j < 10; j++) subarrays.add(new ArrayList<>());
-            for (int numero : array) subarrays.get(numero % potencia * 10/ potencia).add(numero);
+            for (int j = 0; j < 10; j++)
+                subarrays.add(new ArrayList<>());
+            for (int numero : array)
+                subarrays.get(numero % potencia * 10 / potencia).add(numero);
             int j = 0;
             for (List<Integer> subarray : subarrays) {
                 for (int numero : subarray) {
@@ -167,13 +171,11 @@ class Ordenador {
         }
     }
 
-
-
     static void insertionSort(int[] array) {
-        for(int i = 1; i < array.length; i++){
+        for (int i = 1; i < array.length; i++) {
             int value = array[i];
             int j = i - 1;
-            while(j >= 0 && array[j] > value){
+            while (j >= 0 && array[j] > value) {
                 array[j + 1] = array[j];
                 j = j - 1;
             }

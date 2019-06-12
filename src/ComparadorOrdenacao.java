@@ -1,4 +1,3 @@
-
 import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
@@ -11,7 +10,7 @@ class ComparadorOrdenacao {
         System.out.print("\nTamanho do conjunto: ");
         int n = scanner.nextInt();
 
-        while(n > 2) {
+        while (n > 2) {
             long start;
             float tempoQuaseOrdenado, tempoDesordenado, tempoDecrescente;
             int[] aleatorio, decrescente = new int[n], copia = new int[n], quaseOrdenado = new int[n];

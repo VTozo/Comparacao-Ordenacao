@@ -23,7 +23,7 @@ class ComparadorOrdenacao {
             reverseArray(copia);
             System.arraycopy(copia, 0, decrescente, 0, copia.length);
 
-            System.out.printf("%-12s%9s%12s%12s%n", "Algoritmo", "Quase Ordenado", "Desordenado", "Decrescente");
+            System.out.printf("%-11s%9s%12s%12s%n", "Algoritmo", "QuaseOrdenado", "Desordenado", "Decrescente");
 
             // HEAPSORT
             start = System.currentTimeMillis();
@@ -40,7 +40,7 @@ class ComparadorOrdenacao {
             System.arraycopy(quaseOrdenado, 0, copia, 0, copia.length);
             Ordenador.heapSort(copia);
             tempoQuaseOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
-            System.out.printf("%-13s%7.3f s%10.3f s%10.3f s%n", "Heapsort", tempoQuaseOrdenado, tempoDesordenado, tempoDecrescente);
+            System.out.printf("%-14s%8.3f s%10.3f s%10.3f s%n", "Heapsort", tempoQuaseOrdenado, tempoDesordenado, tempoDecrescente);
 
 
             // QUICKSORT
@@ -58,7 +58,7 @@ class ComparadorOrdenacao {
             System.arraycopy(quaseOrdenado, 0, copia, 0, copia.length);
             Ordenador.quickSort(copia);
             tempoQuaseOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
-            System.out.printf("%-13s%7.3f s%10.3f s%10.3f s%n", "Quicksort", tempoQuaseOrdenado, tempoDesordenado, tempoDecrescente);
+            System.out.printf("%-14s%8.3f s%10.3f s%10.3f s%n", "Quicksort", tempoQuaseOrdenado, tempoDesordenado, tempoDecrescente);
 
 
             // SHELLSORT
@@ -76,7 +76,7 @@ class ComparadorOrdenacao {
             System.arraycopy(quaseOrdenado, 0, copia, 0, copia.length);
             Ordenador.shellSort(copia);
             tempoQuaseOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
-            System.out.printf("%-13s%7.3f s%10.3f s%10.3f s%n", "Shellsort", tempoQuaseOrdenado, tempoDesordenado, tempoDecrescente);
+            System.out.printf("%-14s%8.3f s%10.3f s%10.3f s%n", "Shellsort", tempoQuaseOrdenado, tempoDesordenado, tempoDecrescente);
 
 
             // MERGESORT
@@ -94,10 +94,10 @@ class ComparadorOrdenacao {
             System.arraycopy(quaseOrdenado, 0, copia, 0, copia.length);
             Ordenador.mergeSort(copia, copia.length);
             tempoQuaseOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
-            System.out.printf("%-13s%7.3f s%10.3f s%10.3f s%n", "Mergesort", tempoQuaseOrdenado, tempoDesordenado, tempoDecrescente);
+            System.out.printf("%-14s%8.3f s%10.3f s%10.3f s%n", "Mergesort", tempoQuaseOrdenado, tempoDesordenado, tempoDecrescente);
 
 
-            // RADIXSORT
+            // RADIX SORT
             start = System.currentTimeMillis();
             System.arraycopy(aleatorio, 0, copia, 0, copia.length);
             Ordenador.radixSort(copia);
@@ -112,10 +112,10 @@ class ComparadorOrdenacao {
             System.arraycopy(quaseOrdenado, 0, copia, 0, copia.length);
             Ordenador.radixSort(copia);
             tempoQuaseOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
-            System.out.printf("%-13s%7.3f s%10.3f s%10.3f s%n", "Radixsort", tempoQuaseOrdenado, tempoDesordenado, tempoDecrescente);
+            System.out.printf("%-14s%8.3f s%10.3f s%10.3f s%n", "Radix Sort", tempoQuaseOrdenado, tempoDesordenado, tempoDecrescente);
 
 
-            // InsertionSort
+            // INSERTION SORT
             start = System.currentTimeMillis();
             System.arraycopy(aleatorio, 0, copia, 0, copia.length);
             Ordenador.insertionSort(copia);
@@ -130,7 +130,7 @@ class ComparadorOrdenacao {
             System.arraycopy(quaseOrdenado, 0, copia, 0, copia.length);
             Ordenador.insertionSort(copia);
             tempoQuaseOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
-            System.out.printf("%-13s%7.3f s%10.3f s%10.3f s%n", "Insertionsort", tempoQuaseOrdenado, tempoDesordenado, tempoDecrescente);
+            System.out.printf("%-14s%8.3f s%10.3f s%10.3f s%n", "Insertion Sort", tempoQuaseOrdenado, tempoDesordenado, tempoDecrescente);
 
             System.out.print("\nTamanho do conjunto: ");
             n = scanner.nextInt();

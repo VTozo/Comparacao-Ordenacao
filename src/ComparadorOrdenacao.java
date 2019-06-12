@@ -10,12 +10,14 @@ public class ComparadorOrdenacao {
         int n = 10000;
         long start;
 
-        int[] quaseOrdenado, aleatorio, decrescente = new int[n], copia = new int[n];
+        int[] quaseOrdenado, aleatorio, decrescente = new int[n], copia = new int[n], almost = new int[n];
 
         aleatorio = randomizeArray(IntStream.rangeClosed(1, n).toArray());
 
         System.arraycopy(aleatorio, 0, copia, 0, copia.length);
         Arrays.sort(copia);
+        System.arraycopy(copia,0,almost,0,almost.length);
+        almostArray(almost);
         reverseArray(copia);
         System.arraycopy(copia, 0, decrescente, 0, copia.length);
 
@@ -91,4 +93,31 @@ public class ComparadorOrdenacao {
         return arr;
     }
 
+    private static int[] almostArray(int[] a){
+        Random r = new Random();
+
+        int s1, s2, s3, s4, aux;
+        s1 = r.nextInt(a.length-1 - 0);
+        s2 = r.nextInt(a.length-1 - 0);
+        s3 = r.nextInt(a.length-1 - 0);
+        s4 = r.nextInt(a.length-1 - 0);
+
+        while (true){
+            if (s1 != s2){
+                if (s3 != s4){
+                    aux = a[s1];
+                    a[s1] = a[s2];
+                    a[s2] = aux;
+                    aux = a[s3];
+                    a[s3] = a[s4];
+                    a[s4] = aux;
+                    return a;
+                }else{
+                    s4 = r.nextInt(a.length-1 - 0);
+                }
+            }else{
+                s2 = r.nextInt(a.length-1 - 0);
+            }
+        }
+    }
 }

@@ -1,5 +1,7 @@
 import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 class Ordenador {
 
@@ -123,7 +125,29 @@ class Ordenador {
     static void radixSort(int[] array) {
         int maior = array[0];
         for (int numero : array) if (numero > maior) maior = numero;
+        int digitos = 1;
+        while (maior / 10 > 0) {
+            maior /= 10;
+            digitos++;
+        }
 
+        for (int i = 0; i < digitos; i++) {
+            List<List<Integer>> subarrays = new ArrayList<List<Integer>>();
+            for (int j = 0; j < 10; j++) {
+                subarrays.add(new ArrayList<Integer>());
+            }
+
+            for (int j = 0; j < array.length; j++) {
+                subarrays.get((int) (array[j] % Math.pow(10, i + 1) / Math.pow(10, i))).add(array[j]);
+            }
+            int j = 0;
+            for (List<Integer> subarray : subarrays) {
+                for (int numero : subarray) {
+                    array[j] = numero;
+                    j++;
+                }
+            }
+        }
     }
 
     static void aFazerSort6(int[] array) {

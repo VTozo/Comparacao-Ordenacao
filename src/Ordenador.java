@@ -133,13 +133,8 @@ class Ordenador {
 
         for (int i = 0; i < digitos; i++) {
             List<List<Integer>> subarrays = new ArrayList<List<Integer>>();
-            for (int j = 0; j < 10; j++) {
-                subarrays.add(new ArrayList<Integer>());
-            }
-
-            for (int j = 0; j < array.length; j++) {
-                subarrays.get((int) (array[j] % Math.pow(10, i + 1) / Math.pow(10, i))).add(array[j]);
-            }
+            for (int j = 0; j < 10; j++) subarrays.add(new ArrayList<Integer>());
+            for (int numero : array) subarrays.get((int) (numero % Math.pow(10, i + 1) / Math.pow(10, i))).add(numero);
             int j = 0;
             for (List<Integer> subarray : subarrays) {
                 for (int numero : subarray) {

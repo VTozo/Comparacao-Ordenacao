@@ -13,21 +13,18 @@ public class ComparadorOrdenacao {
 
         while(n > 2) {
             long start;
-            float tempoOrdenado, tempoDesordenado, tempoDecrescente;
-            int[] aleatorio, ordenado = new int[n], decrescente = new int[n], copia = new int[n], almost = new int[n];
-            //alterar ordenado para quaseOrdenado
+            float tempoQuaseOrdenado, tempoDesordenado, tempoDecrescente;
+            int[] aleatorio, decrescente = new int[n], copia = new int[n], quaseOrdenado = new int[n];
 
             aleatorio = randomizeArray(IntStream.rangeClosed(1, n).toArray());
             System.arraycopy(aleatorio, 0, copia, 0, copia.length);
             Arrays.sort(copia);
-            System.arraycopy(copia, 0, ordenado, 0, copia.length);
-            System.arraycopy(copia, 0, almost, 0, almost.length);
-            almostArray(almost);
+            System.arraycopy(copia, 0, quaseOrdenado, 0, quaseOrdenado.length);
+            trocarAleatorio(quaseOrdenado, 4);
             reverseArray(copia);
             System.arraycopy(copia, 0, decrescente, 0, copia.length);
 
-            System.out.printf("%-12s%9s%12s%12s%n", "Algoritmo", "Ordenado", "Desordenado", "Decrescente");
-
+            System.out.printf("%-12s%9s%12s%12s%n", "Algoritmo", "Quase Ordenado", "Desordenado", "Decrescente");
 
             // HEAPSORT
             start = System.currentTimeMillis();
@@ -41,10 +38,10 @@ public class ComparadorOrdenacao {
             tempoDecrescente = (float) (System.currentTimeMillis() - start) / 1000;
 
             start = System.currentTimeMillis();
-            System.arraycopy(ordenado, 0, copia, 0, copia.length);
+            System.arraycopy(quaseOrdenado, 0, copia, 0, copia.length);
             Ordenador.heapSort(copia);
-            tempoOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
-            System.out.printf("%-12s%7.3f s%10.3f s%10.3f s%n", "Heapsort", tempoOrdenado, tempoDesordenado, tempoDecrescente);
+            tempoQuaseOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
+            System.out.printf("%-12s%7.3f s%10.3f s%10.3f s%n", "Heapsort", tempoQuaseOrdenado, tempoDesordenado, tempoDecrescente);
 
 
             // QUICKSORT
@@ -59,10 +56,10 @@ public class ComparadorOrdenacao {
             tempoDecrescente = (float) (System.currentTimeMillis() - start) / 1000;
 
             start = System.currentTimeMillis();
-            System.arraycopy(ordenado, 0, copia, 0, copia.length);
+            System.arraycopy(quaseOrdenado, 0, copia, 0, copia.length);
             Ordenador.quickSort(copia);
-            tempoOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
-            System.out.printf("%-12s%7.3f s%10.3f s%10.3f s%n", "Quicksort", tempoOrdenado, tempoDesordenado, tempoDecrescente);
+            tempoQuaseOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
+            System.out.printf("%-12s%7.3f s%10.3f s%10.3f s%n", "Quicksort", tempoQuaseOrdenado, tempoDesordenado, tempoDecrescente);
 
 
             // SHELLSORT
@@ -77,10 +74,10 @@ public class ComparadorOrdenacao {
             tempoDecrescente = (float) (System.currentTimeMillis() - start) / 1000;
 
             start = System.currentTimeMillis();
-            System.arraycopy(ordenado, 0, copia, 0, copia.length);
+            System.arraycopy(quaseOrdenado, 0, copia, 0, copia.length);
             Ordenador.shellSort(copia);
-            tempoOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
-            System.out.printf("%-12s%7.3f s%10.3f s%10.3f s%n", "Shellsort", tempoOrdenado, tempoDesordenado, tempoDecrescente);
+            tempoQuaseOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
+            System.out.printf("%-12s%7.3f s%10.3f s%10.3f s%n", "Shellsort", tempoQuaseOrdenado, tempoDesordenado, tempoDecrescente);
 
 
             // MERGESORT
@@ -95,10 +92,10 @@ public class ComparadorOrdenacao {
             tempoDecrescente = (float) (System.currentTimeMillis() - start) / 1000;
 
             start = System.currentTimeMillis();
-            System.arraycopy(ordenado, 0, copia, 0, copia.length);
+            System.arraycopy(quaseOrdenado, 0, copia, 0, copia.length);
             Ordenador.mergeSort(copia, copia.length);
-            tempoOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
-            System.out.printf("%-12s%7.3f s%10.3f s%10.3f s%n", "Mergesort", tempoOrdenado, tempoDesordenado, tempoDecrescente);
+            tempoQuaseOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
+            System.out.printf("%-12s%7.3f s%10.3f s%10.3f s%n", "Mergesort", tempoQuaseOrdenado, tempoDesordenado, tempoDecrescente);
 
 
             // RADIXSORT
@@ -113,10 +110,10 @@ public class ComparadorOrdenacao {
             tempoDecrescente = (float) (System.currentTimeMillis() - start) / 1000;
 
             start = System.currentTimeMillis();
-            System.arraycopy(ordenado, 0, copia, 0, copia.length);
+            System.arraycopy(quaseOrdenado, 0, copia, 0, copia.length);
             Ordenador.radixSort(copia);
-            tempoOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
-            System.out.printf("%-12s%7.3f s%10.3f s%10.3f s%n", "Radixsort", tempoOrdenado, tempoDesordenado, tempoDecrescente);
+            tempoQuaseOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
+            System.out.printf("%-12s%7.3f s%10.3f s%10.3f s%n", "Radixsort", tempoQuaseOrdenado, tempoDesordenado, tempoDecrescente);
 
 
             // InsertionSort
@@ -131,10 +128,10 @@ public class ComparadorOrdenacao {
             tempoDecrescente = (float) (System.currentTimeMillis() - start) / 1000;
 
             start = System.currentTimeMillis();
-            System.arraycopy(ordenado, 0, copia, 0, copia.length);
+            System.arraycopy(quaseOrdenado, 0, copia, 0, copia.length);
             Ordenador.insertionSort(copia);
-            tempoOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
-            System.out.printf("%-12s%7.3f s%10.3f s%10.3f s%n", "Insertionsort", tempoOrdenado, tempoDesordenado, tempoDecrescente);
+            tempoQuaseOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
+            System.out.printf("%-12s%7.3f s%10.3f s%10.3f s%n", "Insertionsort", tempoQuaseOrdenado, tempoDesordenado, tempoDecrescente);
 
             System.out.print("\nTamanho do conjunto: ");
             n = scanner.nextInt();
@@ -155,41 +152,26 @@ public class ComparadorOrdenacao {
         return array;
     }
 
-    private static int[] reverseArray(int[] array) {
+    private static void reverseArray(int[] array) {
         int temp;
         for (int i = 0; i < array.length / 2; ++i) {
             temp = array[i];
             array[i] = array[array.length - i - 1];
             array[array.length - i - 1] = temp;
         }
-        return array;
     }
 
-    private static int[] almostArray(int[] a) {
+    private static void trocarAleatorio(int[] array, int trocas) {
         Random r = new Random();
 
-        int s1, s2, s3, s4, aux;
-        s1 = r.nextInt(a.length - 1 - 0);
-        s2 = r.nextInt(a.length - 1 - 0);
-        s3 = r.nextInt(a.length - 1 - 0);
-        s4 = r.nextInt(a.length - 1 - 0);
+        int s1, s2, aux;
 
-        while (true) {
-            if (s1 != s2) {
-                if (s3 != s4) {
-                    aux = a[s1];
-                    a[s1] = a[s2];
-                    a[s2] = aux;
-                    aux = a[s3];
-                    a[s3] = a[s4];
-                    a[s4] = aux;
-                    return a;
-                } else {
-                    s4 = r.nextInt(a.length - 1 - 0);
-                }
-            } else {
-                s2 = r.nextInt(a.length - 1 - 0);
-            }
+        for (int i = 0; i < trocas; i++) {
+            s1 = r.nextInt(array.length - 1);
+            s2 = r.nextInt(array.length - 1);
+            aux = array[s1];
+            array[s1] = array[s2];
+            array[s2] = aux;
         }
     }
 }

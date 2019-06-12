@@ -1,18 +1,17 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
 class Ordenador {
 
     static void quickSort(int[] vetor) {
-        Stack stack = new Stack();
+        Stack<Integer> stack = new Stack<>();
         stack.push(0);
         stack.push(vetor.length);
 
         while (!stack.isEmpty()) {
-            int end = (int) stack.pop();
-            int start = (int) stack.pop();
+            int end = stack.pop();
+            int start = stack.pop();
             if (end - start < 2) {
                 continue;
             }

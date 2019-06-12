@@ -1,125 +1,144 @@
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.stream.IntStream;
 
 public class ComparadorOrdenacao {
     public static void main(String[] args) {
 
-        int n = 1000000;
-        long start;
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("\nTamanho do conjunto: ");
+        int n = scanner.nextInt();
 
-        int[] aleatorio, ordenado = new int[n], decrescente = new int[n], copia = new int[n], almost = new int[n];
-        //alterar ordenado para quaseOrdenado
+        while(n > 2) {
+            long start;
+            float tempoOrdenado, tempoDesordenado, tempoDecrescente;
+            int[] aleatorio, ordenado = new int[n], decrescente = new int[n], copia = new int[n], almost = new int[n];
+            //alterar ordenado para quaseOrdenado
 
-        aleatorio = randomizeArray(IntStream.rangeClosed(1, n).toArray());
+            aleatorio = randomizeArray(IntStream.rangeClosed(1, n).toArray());
+            System.arraycopy(aleatorio, 0, copia, 0, copia.length);
+            Arrays.sort(copia);
+            System.arraycopy(copia, 0, ordenado, 0, copia.length);
+            System.arraycopy(copia, 0, almost, 0, almost.length);
+            almostArray(almost);
+            reverseArray(copia);
+            System.arraycopy(copia, 0, decrescente, 0, copia.length);
 
-        System.arraycopy(aleatorio, 0, copia, 0, copia.length);
-        Arrays.sort(copia);
-        System.arraycopy(copia, 0, ordenado, 0, copia.length);
-        System.arraycopy(copia, 0, almost, 0, almost.length);
-        almostArray(almost);
-        reverseArray(copia);
-        System.arraycopy(copia, 0, decrescente, 0, copia.length);
-
-        // HEAP SORT
-        start = System.currentTimeMillis();
-        System.arraycopy(aleatorio, 0, copia, 0, copia.length);
-        Ordenador.heapSort(copia);
-        System.out.printf("Heap Sort Aleatório    %.3f s%n", (float) (System.currentTimeMillis() - start) / 1000);
-
-        start = System.currentTimeMillis();
-        System.arraycopy(decrescente, 0, copia, 0, copia.length);
-        Ordenador.heapSort(copia);
-        System.out.printf("Heap Sort Decrescente  %.3f s%n", (float) (System.currentTimeMillis() - start) / 1000);
-
-        start = System.currentTimeMillis();
-        System.arraycopy(ordenado, 0, copia, 0, copia.length);
-        Ordenador.heapSort(copia);
-        System.out.printf("Heap Sort Ordenado     %.3f s%n", (float) (System.currentTimeMillis() - start) / 1000);
-
-        // QUICK SORT
-//        start = System.currentTimeMillis();
-//        System.arraycopy(aleatorio, 0, copia, 0, copia.length);
-//        Ordenador.quickSort(copia, 0, copia.length - 1);
-//        System.out.printf("Quick Sort Aleatório   %.3f s%n", (float) (System.currentTimeMillis() - start) / 1000);
-//
-//        start = System.currentTimeMillis();
-//        System.arraycopy(decrescente, 0, copia, 0, copia.length);
-//        Ordenador.quickSort(copia, 0, copia.length - 1);
-//        System.out.printf("Quick Sort Decrescente %.3f s%n", (float) (System.currentTimeMillis() - start) / 1000);
-
-//        start = System.currentTimeMillis();
-//        System.arraycopy(ordenado, 0, copia, 0, copia.length);
-//        Ordenador.quickSort(copia, 0, copia.length - 1);
-//        System.out.printf("Quick Sort Ordenado    %.3f s%n", (float) (System.currentTimeMillis() - start) / 1000);
+            System.out.printf("%-12s%9s%12s%12s%n", "Algoritmo", "Ordenado", "Desordenado", "Decrescente");
 
 
-        // SHELL SORT
-        start = System.currentTimeMillis();
-        System.arraycopy(aleatorio, 0, copia, 0, copia.length);
-        Ordenador.shellSort(copia);
-        System.out.printf("Shell Sort Aleatório   %.3f s%n", (float) (System.currentTimeMillis() - start) / 1000);
+            // HEAPSORT
+            start = System.currentTimeMillis();
+            System.arraycopy(aleatorio, 0, copia, 0, copia.length);
+            Ordenador.heapSort(copia);
+            tempoDesordenado = (float) (System.currentTimeMillis() - start) / 1000;
 
-        start = System.currentTimeMillis();
-        System.arraycopy(decrescente, 0, copia, 0, copia.length);
-        Ordenador.shellSort(copia);
-        System.out.printf("Shell Sort Decrescente %.3f s%n", (float) (System.currentTimeMillis() - start) / 1000);
+            start = System.currentTimeMillis();
+            System.arraycopy(decrescente, 0, copia, 0, copia.length);
+            Ordenador.heapSort(copia);
+            tempoDecrescente = (float) (System.currentTimeMillis() - start) / 1000;
 
-        start = System.currentTimeMillis();
-        System.arraycopy(ordenado, 0, copia, 0, copia.length);
-        Ordenador.shellSort(copia);
-        System.out.printf("Shell Sort Ordenado    %.3f s%n", (float) (System.currentTimeMillis() - start) / 1000);
+            start = System.currentTimeMillis();
+            System.arraycopy(ordenado, 0, copia, 0, copia.length);
+            Ordenador.heapSort(copia);
+            tempoOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
+            System.out.printf("%-12s%7.3f s%10.3f s%10.3f s%n", "Heapsort", tempoOrdenado, tempoDesordenado, tempoDecrescente);
 
 
-        // MERGE SORT
-        start = System.currentTimeMillis();
-        System.arraycopy(aleatorio, 0, copia, 0, copia.length);
-        Ordenador.mergeSort(copia, copia.length);
-        System.out.printf("Merge Sort Aleatório   %.3f s%n", (float) (System.currentTimeMillis() - start) / 1000);
+            // QUICKSORT
+            start = System.currentTimeMillis();
+            System.arraycopy(aleatorio, 0, copia, 0, copia.length);
+            Ordenador.quickSort(copia, 0, copia.length - 1);
+            tempoDesordenado = (float) (System.currentTimeMillis() - start) / 1000;
 
-        start = System.currentTimeMillis();
-        System.arraycopy(decrescente, 0, copia, 0, copia.length);
-        Ordenador.mergeSort(copia, copia.length);
-        System.out.printf("Merge Sort Decrescente %.3f s%n", (float) (System.currentTimeMillis() - start) / 1000);
+            start = System.currentTimeMillis();
+            System.arraycopy(decrescente, 0, copia, 0, copia.length);
+            Ordenador.quickSort(copia, 0, copia.length - 1);
+            tempoDecrescente = (float) (System.currentTimeMillis() - start) / 1000;
 
-        start = System.currentTimeMillis();
-        System.arraycopy(ordenado, 0, copia, 0, copia.length);
-        Ordenador.mergeSort(copia, copia.length);
-        System.out.printf("Merge Sort Ordenado    %.3f s%n", (float) (System.currentTimeMillis() - start) / 1000);
+            start = System.currentTimeMillis();
+            System.arraycopy(ordenado, 0, copia, 0, copia.length);
+            Ordenador.quickSort(copia, 0, copia.length - 1);
+            tempoOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
+            System.out.printf("%-12s%7.3f s%10.3f s%10.3f s%n", "Quicksort", tempoOrdenado, tempoDesordenado, tempoDecrescente);
 
-        // RADIX SORT
-        start = System.currentTimeMillis();
-        System.arraycopy(aleatorio, 0, copia, 0, copia.length);
-        Ordenador.radixSort(copia);
-        System.out.printf("Radix Sort Aleatório   %.3f s%n", (float) (System.currentTimeMillis() - start) / 1000);
 
-        start = System.currentTimeMillis();
-        System.arraycopy(decrescente, 0, copia, 0, copia.length);
-        Ordenador.radixSort(copia);
-        System.out.printf("Radix Sort Decrescente %.3f s%n", (float) (System.currentTimeMillis() - start) / 1000);
+            // SHELLSORT
+            start = System.currentTimeMillis();
+            System.arraycopy(aleatorio, 0, copia, 0, copia.length);
+            Ordenador.shellSort(copia);
+            tempoDesordenado = (float) (System.currentTimeMillis() - start) / 1000;
 
-        start = System.currentTimeMillis();
-        System.arraycopy(ordenado, 0, copia, 0, copia.length);
-        Ordenador.radixSort(copia);
-        System.out.printf("Radix Sort Ordenado    %.3f s%n", (float) (System.currentTimeMillis() - start) / 1000);
+            start = System.currentTimeMillis();
+            System.arraycopy(decrescente, 0, copia, 0, copia.length);
+            Ordenador.shellSort(copia);
+            tempoDecrescente = (float) (System.currentTimeMillis() - start) / 1000;
 
-        // A FAZER SORT 6
-        start = System.currentTimeMillis();
-        System.arraycopy(aleatorio, 0, copia, 0, copia.length);
-        Ordenador.aFazerSort6(copia);
-        System.out.printf("A Fazer Sort 6 Aleatório   %.3f s%n", (float) (System.currentTimeMillis() - start) / 1000);
+            start = System.currentTimeMillis();
+            System.arraycopy(ordenado, 0, copia, 0, copia.length);
+            Ordenador.shellSort(copia);
+            tempoOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
+            System.out.printf("%-12s%7.3f s%10.3f s%10.3f s%n", "Shellsort", tempoOrdenado, tempoDesordenado, tempoDecrescente);
 
-        start = System.currentTimeMillis();
-        System.arraycopy(decrescente, 0, copia, 0, copia.length);
-        Ordenador.aFazerSort6(copia);
-        System.out.printf("A Fazer Sort 6 Decrescente %.3f s%n", (float) (System.currentTimeMillis() - start) / 1000);
 
-        start = System.currentTimeMillis();
-        System.arraycopy(ordenado, 0, copia, 0, copia.length);
-        Ordenador.aFazerSort6(copia);
-        System.out.printf("A Fazer Sort 6 Ordenado    %.3f s%n", (float) (System.currentTimeMillis() - start) / 1000);
+            // MERGESORT
+            start = System.currentTimeMillis();
+            System.arraycopy(aleatorio, 0, copia, 0, copia.length);
+            Ordenador.mergeSort(copia, copia.length);
+            tempoDesordenado = (float) (System.currentTimeMillis() - start) / 1000;
+
+            start = System.currentTimeMillis();
+            System.arraycopy(decrescente, 0, copia, 0, copia.length);
+            Ordenador.mergeSort(copia, copia.length);
+            tempoDecrescente = (float) (System.currentTimeMillis() - start) / 1000;
+
+            start = System.currentTimeMillis();
+            System.arraycopy(ordenado, 0, copia, 0, copia.length);
+            Ordenador.mergeSort(copia, copia.length);
+            tempoOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
+            System.out.printf("%-12s%7.3f s%10.3f s%10.3f s%n", "Mergesort", tempoOrdenado, tempoDesordenado, tempoDecrescente);
+
+
+            // RADIXSORT
+            start = System.currentTimeMillis();
+            System.arraycopy(aleatorio, 0, copia, 0, copia.length);
+            Ordenador.radixSort(copia);
+            tempoDesordenado = (float) (System.currentTimeMillis() - start) / 1000;
+
+            start = System.currentTimeMillis();
+            System.arraycopy(decrescente, 0, copia, 0, copia.length);
+            Ordenador.radixSort(copia);
+            tempoDecrescente = (float) (System.currentTimeMillis() - start) / 1000;
+
+            start = System.currentTimeMillis();
+            System.arraycopy(ordenado, 0, copia, 0, copia.length);
+            Ordenador.radixSort(copia);
+            tempoOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
+            System.out.printf("%-12s%7.3f s%10.3f s%10.3f s%n", "Radixsort", tempoOrdenado, tempoDesordenado, tempoDecrescente);
+
+
+            // AFAZERSORT
+            start = System.currentTimeMillis();
+            System.arraycopy(aleatorio, 0, copia, 0, copia.length);
+            Ordenador.aFazerSort6(copia);
+            tempoDesordenado = (float) (System.currentTimeMillis() - start) / 1000;
+
+            start = System.currentTimeMillis();
+            System.arraycopy(decrescente, 0, copia, 0, copia.length);
+            Ordenador.aFazerSort6(copia);
+            tempoDecrescente = (float) (System.currentTimeMillis() - start) / 1000;
+
+            start = System.currentTimeMillis();
+            System.arraycopy(ordenado, 0, copia, 0, copia.length);
+            Ordenador.aFazerSort6(copia);
+            tempoOrdenado = (float) (System.currentTimeMillis() - start) / 1000;
+            System.out.printf("%-12s%7.3f s%10.3f s%10.3f s%n", "Afazersort", tempoOrdenado, tempoDesordenado, tempoDecrescente);
+
+            System.out.print("\nTamanho do conjunto: ");
+            n = scanner.nextInt();
+        }
 
     }
 
